@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <!--
-  真白 冬雪 / Mashiro Fuyuyuki · After Hours
+  真白 冬雪 / Mashiro Fuyuyuki · 雪落空山
   ------------------------------------------------------------
   · 单文件个人主页：HTML + 内联 CSS + 页尾原生 JS。
-  · 主题：深夜、VRChat 两个世界、BOOTH 小店与群组；夜谈保留为独立的夜间段落。
-  · 结构：首屏 → 01 档案 → 02 状态 → 03 夜谈 → 04 房间 → 05 团体 → 06 链接 → 页脚。
-  · 内容来源：player.txt。
+  · 主题：雪落空山、VRChat 世界、BOOTH 小店、健康记录与安静的夜间段落。
+  · 结构：首屏 → 01 档案 → 02 状态 → 03 夜谈 → 04 房间 → 05 团体 → 06 链接 → 07 更多 → 页脚。
+  · 内容来源：player.txt、Avatar&Status.txt、games.txt、medical.txt。
 -->
 <html lang="zh-CN">
 <head>
@@ -14,10 +14,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#06080d">
-<title>真白 冬雪</title>
-<meta name="description" content="真白 冬雪 / Mashiro Fuyuyuki。ISFP &amp; INFP。Online: Love me... Two VRChat worlds, a BOOTH shop, groups, and late-night notes.">
-<meta property="og:title" content="真白 冬雪 · After Hours">
-<meta property="og:description" content="我想做回刚玩 VRC 的自己。">
+<title>真白 冬雪 · 雪落空山</title>
+<meta name="description" content="真白 冬雪 / Mashiro Fuyuyuki。ISFP &amp; INFP。「众生熙攘，独我伶俜」。VRChat worlds, BOOTH shop, works, and late-night notes.">
+<meta property="og:title" content="真白 冬雪 · 雪落空山">
+<meta property="og:description" content="“你好啊你好啊，在我身边有让你感到开心吗？”">
 <meta property="og:type" content="profile">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2306080d'/%3E%3Ccircle cx='32' cy='32' r='17' fill='none' stroke='%23e6c79a' stroke-width='1.4'/%3E%3Ccircle cx='32' cy='32' r='3' fill='%23e6c79a'/%3E%3C/svg%3E">
 <script>document.documentElement.classList.add('js');</script>
@@ -146,6 +146,11 @@ body.nav-open{overflow:hidden}
 .pronoun{margin:12px 0 0;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-mute)}
 .pronoun span{color:var(--ink-soft);letter-spacing:.12em}
 .hero-quote{position:relative;margin:30px 0 0;padding:2px 0 2px 20px;border-left:1px solid var(--amber);font-family:var(--serif);font-weight:300;font-size:clamp(1.2rem,2.05vw,1.65rem);line-height:1.85;letter-spacing:.04em;color:var(--ink)}
+.hero-sub{margin:14px 0 0;font-family:var(--mono);font-size:9px;letter-spacing:.12em;line-height:1.9;color:var(--ink-mute)}
+.hero-sub::before{content:"— ";color:var(--amber)}
+.mountain{position:absolute;left:0;right:0;bottom:0;width:100%;height:clamp(170px,30vh,340px);z-index:1;pointer-events:none;opacity:.8}
+.mountain path{fill:rgba(150,180,210,.045);stroke:rgba(200,220,240,.10);stroke-width:1;vector-effect:non-scaling-stroke}
+.mountain path:last-child{fill:rgba(120,150,180,.035);stroke:rgba(200,220,240,.06)}
 .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 .btn{display:inline-flex;align-items:center;gap:9px;padding:10px 18px;border:1px solid var(--line-strong);font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);background:rgba(11,17,25,.5);transition:color .25s ease,border-color .25s ease,background .25s ease,transform .25s ease}
 .btn:hover{color:#fff;border-color:var(--amber);background:rgba(230,199,154,.08);transform:translateY(-2px)}
@@ -164,7 +169,7 @@ body.nav-open{overflow:hidden}
 .portrait-cap .p-name{font-family:var(--serif);font-weight:300;font-size:clamp(1.2rem,2vw,1.6rem);letter-spacing:.1em;color:var(--ink)}
 .portrait-cap .p-state{font-family:var(--mono);font-size:9px;letter-spacing:.12em;color:var(--state)}
 .portrait-note{margin:12px 0 0;font-family:var(--mono);font-size:8px;letter-spacing:.24em;color:var(--ink-mute);text-transform:uppercase;text-align:right}
-.scroll-cue{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:grid;justify-items:center;gap:8px;font-family:var(--mono);font-size:8px;letter-spacing:.4em;color:var(--ink-mute);text-transform:uppercase}
+.scroll-cue{position:absolute;z-index:2;left:50%;bottom:20px;transform:translateX(-50%);display:grid;justify-items:center;gap:8px;font-family:var(--mono);font-size:8px;letter-spacing:.4em;color:var(--ink-mute);text-transform:uppercase}
 .scroll-cue i{position:relative;display:block;width:1px;height:46px;background:rgba(230,199,154,.18);overflow:hidden}
 .scroll-cue i::after{content:"";position:absolute;left:0;top:-60%;width:100%;height:60%;background:linear-gradient(180deg,transparent,var(--amber));animation:cue 2.8s cubic-bezier(.4,0,.2,1) infinite}
 @keyframes cue{0%{top:-60%;opacity:0}25%{opacity:1}75%{opacity:1}100%{top:100%;opacity:0}}
@@ -190,6 +195,9 @@ main{position:relative;z-index:2}
 .about-copy{margin:26px 0 0;max-width:50ch;font-family:var(--serif);font-size:clamp(1rem,1.5vw,1.2rem);line-height:2.15;letter-spacing:.08em;color:var(--ink-soft)}
 .about-copy em{font-style:normal;color:var(--amber-bright)}
 .about-copy .quiet{color:var(--ink-mute)}
+.about-ask{display:block;margin-top:8px;color:var(--ink)}
+.about-line{margin:28px 0 0;padding:6px 0 6px 18px;border-left:1px solid var(--amber);font-family:var(--serif);font-weight:300;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.7;letter-spacing:.12em;color:var(--amber-bright)}
+.about-copy--small{margin-top:22px;font-size:clamp(.9rem,1.25vw,1rem);line-height:2;color:var(--ink-mute)}
 .about-translations{display:grid;gap:9px;margin:24px 0 0;padding-top:18px;border-top:1px solid var(--line);max-width:56ch}
 .about-translations p{margin:0;font-family:var(--sans);font-size:clamp(.72rem,1.05vw,.8rem);line-height:1.95;letter-spacing:.02em;color:var(--ink-mute)}
 .about-translations .lang{display:inline-block;margin-right:8px;font-family:var(--mono);font-size:7px;letter-spacing:.18em;color:var(--amber);vertical-align:1px}
@@ -211,19 +219,33 @@ main{position:relative;z-index:2}
 .chip-label{width:100%;font-family:var(--mono);font-size:8px;letter-spacing:.22em;color:var(--ink-mute);text-transform:uppercase}
 .chip{padding:3px 8px;border:1px solid var(--line);font-family:var(--mono);font-size:8px;letter-spacing:.06em;color:var(--ink-soft)}
 .chip.muted{color:var(--ink-mute);border-style:dashed}
+.games-strip{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);display:grid;gap:10px}
+.games-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px}
+.games-head .chip-label{width:auto}
+.games-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px}
+.games-list li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:.95rem;letter-spacing:.04em;color:var(--ink-soft)}
+.games-list li i{font-family:var(--mono);font-style:normal;font-size:7px;letter-spacing:.1em;color:var(--ink-mute);white-space:nowrap}
+.games-also{margin:0;font-family:var(--mono);font-size:8px;letter-spacing:.08em;line-height:1.9;color:var(--ink-mute)}
 
 /* 4.2 状态 */
 .states-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}
 .states-intro .note{max-width:34ch;text-align:right;flex:none}
-.states-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.states-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
 .state-card{position:relative;display:flex;flex-direction:column;padding:0;border:1px solid var(--line);background:linear-gradient(170deg,rgba(16,23,33,.6),rgba(7,10,16,.3));text-align:left;cursor:pointer;overflow:hidden;transition:transform .45s cubic-bezier(.2,.7,.2,1),border-color .35s ease,box-shadow .45s ease}
 .state-card:hover{transform:translateY(-4px);border-color:var(--line-strong)}
 .state-card[aria-pressed="true"]{border-color:var(--tint);box-shadow:0 22px 60px -34px var(--tint)}
 .state-media{position:relative;display:block;aspect-ratio:4/5;overflow:hidden;background:#0a1018}
-.state-media img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:saturate(.72) brightness(.74);transition:transform 1s ease,filter .5s ease}
-.state-card:hover .state-media img{transform:scale(1.04);filter:saturate(.9) brightness(.84)}
-.state-card[aria-pressed="true"] .state-media img{filter:saturate(1) brightness(.92)}
+.state-media > img{width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:saturate(.72) brightness(.74);transition:transform 1s ease,filter .5s ease}
+.state-card:hover .state-media > img{transform:scale(1.04);filter:saturate(.9) brightness(.84)}
+.state-card[aria-pressed="true"] .state-media > img{filter:saturate(1) brightness(.92)}
 .state-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,8,13,.12),rgba(6,8,13,0) 40%,rgba(6,8,13,.92) 100%);pointer-events:none}
+.state-card-wrap{display:flex;flex-direction:column;gap:6px;min-width:0}
+.state-card-wrap .state-card{flex:1}
+.state-swap{display:flex;align-items:center;gap:8px;padding:6px 9px;border:1px solid var(--line);background:rgba(11,17,25,.45);font-family:var(--mono);font-size:7px;letter-spacing:.08em;color:var(--ink-mute);cursor:pointer;text-align:left;transition:border-color .25s ease,color .25s ease}
+.state-swap:hover{border-color:var(--line-strong);color:var(--ink-soft)}
+.state-swap img{width:22px;height:22px;border-radius:50%;object-fit:cover;border:1px solid var(--tint);flex:none}
+.swap-count{margin-left:auto;font-family:var(--mono);font-size:7px;letter-spacing:.06em;color:var(--ink-mute);white-space:nowrap}
+.state-swap i{margin-left:6px;font-style:normal;color:var(--tint);font-size:11px}
 .state-now{position:absolute;z-index:2;top:11px;right:11px;padding:2px 7px;border:1px solid rgba(230,199,154,.4);background:rgba(6,8,13,.72);font-family:var(--mono);font-size:7px;letter-spacing:.18em;color:var(--amber-bright);opacity:0;transform:translateY(-3px);transition:.3s ease}
 .state-card[aria-pressed="true"] .state-now{opacity:1;transform:none}
 .state-body{display:flex;flex-direction:column;padding:13px 15px 17px}
@@ -232,6 +254,7 @@ main{position:relative;z-index:2}
 .state-en{display:block;margin-top:3px;font-family:var(--mono);font-size:7px;letter-spacing:.16em;color:var(--ink-mute);text-transform:uppercase}
 .state-value{display:flex;align-items:center;gap:6px;margin-top:11px;font-family:var(--mono);font-size:8px;letter-spacing:.06em;line-height:1.6;color:var(--ink-soft)}
 .state-value i{width:4px;height:4px;border-radius:50%;background:var(--tint);box-shadow:0 0 8px var(--tint);flex:none}
+.state-value--long{font-size:7px;letter-spacing:.02em;line-height:1.7}
 
 /* 4.3 夜谈 */
 .notes-intro{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:22px}
@@ -288,6 +311,37 @@ main{position:relative;z-index:2}
 .social-links a:hover{color:var(--amber-bright);border-color:var(--amber)}
 
 /* ============================================================
+   4.7 更多：健康记录（默认折叠）
+   ============================================================ */
+.more-panel{border:1px solid var(--line-strong);background:linear-gradient(155deg,rgba(18,25,35,.70),rgba(8,12,19,.44));box-shadow:0 40px 90px -60px rgba(0,0,0,.95)}
+.more-panel > summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:clamp(22px,3.4vw,32px)}
+.more-panel > summary::-webkit-details-marker{display:none}
+.more-panel > summary:focus-visible{outline:1px solid var(--amber);outline-offset:4px}
+.more-hit{display:flex;flex-direction:column;gap:3px}
+.more-kicker{font-family:var(--mono);font-size:8px;letter-spacing:.24em;color:var(--amber);text-transform:uppercase}
+.more-title{font-family:var(--serif);font-weight:300;font-size:clamp(1.7rem,3vw,2.3rem);letter-spacing:.14em;color:var(--ink)}
+.more-meta{display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:8px;letter-spacing:.16em;color:var(--ink-mute);text-transform:uppercase}
+.plus{position:relative;display:inline-block;width:18px;height:18px;border:1px solid var(--line-strong);border-radius:50%;flex:none}
+.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;background:var(--amber);transform:translate(-50%,-50%);transition:transform .3s ease,opacity .3s ease}
+.plus::before{width:8px;height:1px}
+.plus::after{width:1px;height:8px}
+details[open] > summary .plus::after{transform:translate(-50%,-50%) rotate(90deg);opacity:0}
+.more-body{padding:0 clamp(22px,3.4vw,32px) clamp(24px,3vw,30px);border-top:1px solid var(--line)}
+.more-content{padding:0 0 26px}
+.more-warning{margin:0 0 16px;padding:10px 12px;border-left:1px solid var(--rose);background:rgba(216,167,177,.05);font-family:var(--mono);font-size:8px;line-height:1.9;letter-spacing:.04em;color:var(--ink-mute)}
+.med-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.med-card{border:1px solid var(--line);background:rgba(8,12,19,.35);padding:16px 16px 15px}
+.med-card h3{margin:0;font-family:var(--serif);font-weight:400;font-size:1rem;letter-spacing:.12em;color:var(--ink)}
+.med-card h3 span{margin-left:8px;font-family:var(--mono);font-size:7px;letter-spacing:.12em;color:var(--ink-mute)}
+.med-rows{display:grid;gap:0;margin:10px 0 0}
+.med-row{display:flex;align-items:baseline;justify-content:space-between;gap:18px;padding:5px 0;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:8px;letter-spacing:.03em;color:var(--ink-mute)}
+.med-row b{font-family:var(--mono);font-weight:400;color:var(--ink-soft)}
+.med-row.total{border-bottom:0;padding-top:8px;color:var(--ink-soft)}
+.med-result{margin:10px 0 0;font-family:var(--serif);font-size:.92rem;line-height:1.8;color:var(--amber-bright)}
+.med-note{margin:16px 0 0;font-family:var(--mono);font-size:8px;letter-spacing:.03em;line-height:1.9;color:var(--ink-mute)}
+
+
+/* ============================================================
    5. 页脚
    ============================================================ */
 .site-foot{position:relative;z-index:2;padding:clamp(36px,5vw,56px) 0 28px;border-top:1px solid var(--line)}
@@ -321,6 +375,7 @@ main{position:relative;z-index:2}
   .portrait{width:min(72vw,360px);margin:0 auto}
   .profile-grid{grid-template-columns:1fr}
   .group-list{column-gap:30px}
+  .games-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:760px){
   :root{--header-h:64px}
@@ -339,6 +394,13 @@ main{position:relative;z-index:2}
   .group-list{grid-template-columns:1fr;column-gap:0}
   .portrait-note{text-align:left}
   .foot-line{text-align:left}
+  .hero-sub{font-size:8px}
+  .mountain{height:150px;opacity:.6}
+  .games-list{grid-template-columns:1fr}
+  .med-grid{grid-template-columns:1fr}
+  .more-panel > summary{padding:20px}
+  .more-meta{font-size:7px;gap:8px}
+  .more-body{padding:0 20px 20px}
 }
 @media (max-width:560px){
   :root{--gutter:20px}
@@ -348,6 +410,7 @@ main{position:relative;z-index:2}
   .state-media{grid-column:1;grid-row:1 / span 2;height:100%;aspect-ratio:auto;min-height:156px}
   .state-body{grid-column:2;padding:15px 14px 15px 16px}
   .state-now{top:9px;right:9px}
+  .state-swap img{width:20px;height:20px}
   .portrait{width:min(82vw,320px)}
 }
 </style>
@@ -355,7 +418,7 @@ main{position:relative;z-index:2}
 <body>
 <a class="skip" href="#main">跳到主要内容 / Skip to content</a>
 
-<!-- 背景氛围：光斑、尘埃、噪点、阅读进度 -->
+<!-- 背景氛围：光斑、雪、噪点、阅读进度 -->
 <div class="ambient" aria-hidden="true"><span></span><span></span><span></span></div>
 <canvas id="dust" aria-hidden="true"></canvas>
 <svg class="grain" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -369,7 +432,7 @@ main{position:relative;z-index:2}
   <a class="brand" href="#top" aria-label="回到顶部">
     <span class="brand-mark" aria-hidden="true">雪</span>
     <span class="brand-name">真白 冬雪</span>
-    <span class="brand-sub">After Hours</span>
+    <span class="brand-sub">Snowfall</span>
   </a>
   <nav class="nav" aria-label="主导航">
     <a href="#identity">档案</a>
@@ -378,12 +441,13 @@ main{position:relative;z-index:2}
     <a href="#rooms">房间</a>
     <a href="#groups">团体</a>
     <a href="#links">链接</a>
+    <a href="#more">更多</a>
   </nav>
   <a class="status-chip" href="#states" aria-label="查看当前状态">
     <span class="dot" aria-hidden="true"></span>
     <span>Online</span>
     <span class="sep" aria-hidden="true">·</span>
-    <b>Love me...</b>
+    <b>Restarting...</b>
   </a>
   <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="打开菜单">
     <span></span><span></span><span></span>
@@ -399,6 +463,7 @@ main{position:relative;z-index:2}
     <li><a href="#rooms">房间<i>ROOMS</i></a></li>
     <li><a href="#groups">团体<i>GROUPS</i></a></li>
     <li><a href="#links">链接<i>LINKS</i></a></li>
+    <li><a href="#more">更多<i>MORE</i></a></li>
   </ul>
 </div>
 
@@ -407,7 +472,7 @@ main{position:relative;z-index:2}
   <section class="hero" id="top" aria-labelledby="heroTitle">
     <div class="wrap hero-grid">
       <div class="hero-copy">
-        <p class="eyebrow">After Hours · VRChat · BOOTH</p>
+        <p class="eyebrow">Snowfall · 雪落空山 · VRChat</p>
         <h1 class="hero-title" id="heroTitle">
           <span class="name-jp">真白 冬雪</span>
           <span class="name-reading">
@@ -418,7 +483,7 @@ main{position:relative;z-index:2}
         <p class="online">
           <span class="dot" aria-hidden="true"></span>
           <span>Online</span>
-          <b>Love me...</b>
+          <b>Restarting...</b>
         </p>
         <p class="now" aria-live="polite">
           <span>现在</span>
@@ -427,7 +492,8 @@ main{position:relative;z-index:2}
         </p>
         <p class="pronoun">称呼 <span>Yuki / 小雪</span></p>
 
-        <blockquote class="hero-quote">我想做回<br>刚玩 VRC 的自己。</blockquote>
+        <blockquote class="hero-quote">“你好啊你好啊，<br>在我身边有让你感到开心吗？”</blockquote>
+        <p class="hero-sub">我想做回刚玩 VRC 的自己。</p>
 
         <div class="hero-actions">
           <a class="btn primary" href="#notes">进入夜谈 <span aria-hidden="true">↓</span></a>
@@ -450,9 +516,13 @@ main{position:relative;z-index:2}
             <span class="p-state" id="portraitState">Normal</span>
           </div>
         </div>
-        <figcaption class="portrait-note">Love me...</figcaption>
+        <figcaption class="portrait-note">Restarting...</figcaption>
       </figure>
     </div>
+    <svg class="mountain" viewBox="0 0 1440 360" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,300 L120,238 L210,272 L330,170 L430,232 L560,138 L690,252 L820,190 L960,282 L1080,208 L1200,262 L1320,198 L1440,248 L1440,360 L0,360 Z"/>
+      <path d="M0,330 L160,278 L280,312 L420,228 L540,300 L700,218 L840,310 L1000,248 L1160,320 L1300,258 L1440,308 L1440,360 L0,360 Z"/>
+    </svg>
     <div class="scroll-cue" aria-hidden="true"><span>Scroll</span><i></i></div>
   </section>
 
@@ -471,17 +541,20 @@ main{position:relative;z-index:2}
           <p class="about-copy">
             ISFP &amp; INFP。<br>
             我想做回刚玩 VRC 的自己。<br>
-            做了两个地图，在 BOOTH 上售卖一些小物。<br>
-            感兴趣的话请光顾一下。
+            <span class="about-ask">“你好啊你好啊，在我身边有让你感到开心吗？”</span>
+          </p>
+          <blockquote class="about-line">「众生熙攘，独我伶俜」</blockquote>
+          <p class="about-copy about-copy--small">
+            空山听雨，亦或是雪落空山？
           </p>
           <div class="about-translations">
-            <p lang="en"><span class="lang">EN</span>I wanna be the me who just played VRChat.<br>I made two worlds. Also sell some items on booth.<br>If you're interested, please have a visit.</p>
-            <p lang="ja"><span class="lang">JP</span>ヴィチャを始めた頃の自分に戻りたい。<br>二つのワールドを作った。同時にブースで小物を販売しています。<br>もし興味があれば、ぜひお越しください。</p>
+            <p lang="en"><span class="lang">EN</span>I wanna be myself who was just starting to play VRChat.<br>"Yahoo, do you feel happy when you're with me?"<br>"In a world full of people yet I feel lonely."<br>Do not stand at my grave and weep.</p>
+            <p lang="ja"><span class="lang">JP</span>ヴィチャを始めた頃の自分に戻りたい<br>「こんにちは、私のそばで楽しい気持ちになってる？」<br>「人々が賑わう中、ただひとり孤独な私」<br>ねぇ、行かないで。私と遊びましょう。お願い。</p>
           </div>
           <a class="about-shop" href="https://wntsnwf.booth.pm/" target="_blank" rel="noopener noreferrer">BOOTH 小店 ↗</a>
         </div>
 
-        <!-- 身份卡：称呼、类型、状态、现在、地图、小店、语言、常去世界 -->
+        <!-- 身份卡：称呼、类型、状态、现在、地图、小店、语言 -->
         <aside class="file-card reveal" style="--d:140ms" aria-label="身份档案">
           <div class="file-head">
             <span>File 001 / 档案</span>
@@ -496,16 +569,21 @@ main{position:relative;z-index:2}
             <div class="row"><dt>小店</dt><dd><a href="https://wntsnwf.booth.pm/" target="_blank" rel="noopener noreferrer">BOOTH ↗</a></dd></div>
             <div class="row"><dt>语言</dt><dd>中文 / 日本語 / English</dd></div>
           </dl>
-          <div class="world-chips">
-            <span class="chip-label">Known worlds</span>
-            <span class="chip">原神</span>
-            <span class="chip">Minecraft</span>
-            <span class="chip">MMD</span>
-            <span class="chip">Fish!</span>
-            <span class="chip">Ecliptica</span>
-            <span class="chip muted">etc.</span>
-          </div>
         </aside>
+      </div>
+
+      <!-- 游戏清单：来自 games.txt；MMD / Fish! / Ecliptica 来自 player.txt -->
+      <div class="games-strip reveal" style="--d:200ms">
+        <div class="games-head"><span class="chip-label">Games / 近期</span></div>
+        <ul class="games-list">
+          <li><span>原神</span><i>半退坑</i></li>
+          <li><span>Minecraft</span></li>
+          <li><span>VRChat</span></li>
+          <li><span>Alice in Cradle</span></li>
+          <li><span>饿殍：明末千里行</span><i>已完结</i></li>
+          <li><span>魔女的夜宴</span><i>已完结</i></li>
+        </ul>
+        <p class="games-also">ALSO / MMD · Fish! · Ecliptica · etc.</p>
       </div>
     </div>
   </section>
@@ -524,7 +602,7 @@ main{position:relative;z-index:2}
         <p class="note">点击卡片切换状态。</p>
       </div>
 
-      <div class="states-grid" role="group" aria-label="四种状态">
+      <div class="states-grid" role="group" aria-label="六种状态">
         <button class="state-card reveal" type="button" data-state="nemesis" aria-pressed="true"
           style="--tint:#a9c7e8;--d:0ms">
           <span class="state-media">
@@ -580,6 +658,48 @@ main{position:relative;z-index:2}
             <span class="state-value"><i aria-hidden="true"></i>Game</span>
           </span>
         </button>
+
+        <div class="state-card-wrap reveal" style="--tint:#e7b3c4;--d:280ms">
+          <button class="state-card" type="button" data-state="kaguya" aria-pressed="false">
+            <span class="state-media">
+              <img src="avatars/kaguya.jpg" alt="" width="760" height="760" loading="lazy">
+              <span class="state-now" aria-hidden="true">现在</span>
+            </span>
+            <span class="state-body">
+              <span class="state-idx">State 05</span>
+              <span class="state-name" lang="ja">輝夜 / ピンク輝夜 / アキラ</span>
+              <span class="state-en">Kaguya / Pink Kaguya / Akira</span>
+              <span class="state-value"><i aria-hidden="true"></i>MMD</span>
+            </span>
+          </button>
+          <button class="state-swap" type="button" aria-label="切换 輝夜 / ピンク輝夜 / アキラ 的图片，第 1 / 3 张">
+            <img src="avatars/pink_kaguya.jpg" alt="" width="512" height="512" loading="lazy">
+            <span>切换图片 / Switch</span>
+            <span class="swap-count" aria-hidden="true">1 / 3</span>
+            <i aria-hidden="true">⇄</i>
+          </button>
+        </div>
+
+        <div class="state-card-wrap reveal" style="--tint:#b7cfe6;--d:350ms">
+          <button class="state-card" type="button" data-state="hikarun" aria-pressed="false">
+            <span class="state-media">
+              <img src="avatars/hikarun.jpg" alt="" width="760" height="760" loading="lazy">
+              <span class="state-now" aria-hidden="true">现在</span>
+            </span>
+            <span class="state-body">
+              <span class="state-idx">State 06</span>
+              <span class="state-name" lang="ja">ひかるん / キプフェル / 黒いキプフェル</span>
+              <span class="state-en">Hikarun / Kipfel / Black Kipfel</span>
+              <span class="state-value state-value--long"><i aria-hidden="true"></i>You may not lucky enough to find I'm using these avatar.</span>
+            </span>
+          </button>
+          <button class="state-swap" type="button" aria-label="切换 ひかるん / キプフェル / 黒いキプフェル 的图片，第 1 / 3 张">
+            <img src="avatars/kipfel.jpg" alt="" width="512" height="512" loading="lazy">
+            <span>切换图片 / Switch</span>
+            <span class="swap-count" aria-hidden="true">1 / 3</span>
+            <i aria-hidden="true">⇄</i>
+          </button>
+        </div>
       </div>
     </div>
   </section>
@@ -739,6 +859,83 @@ main{position:relative;z-index:2}
       </div>
     </div>
   </section>
+
+  <!-- ============ 07 更多 / More ============ -->
+  <section class="section" id="more" aria-labelledby="moreTitle">
+    <div class="wrap">
+      <header class="sec-head reveal">
+        <span class="sec-idx">07</span>
+        <h2 id="moreTitle">更多</h2>
+        <span class="sec-sub">More / Personal</span>
+      </header>
+
+      <details class="more-panel reveal">
+        <summary>
+          <span class="more-hit">
+            <span class="more-kicker">Personal / 私人</span>
+            <span class="more-title">健康记录</span>
+          </span>
+          <span class="more-meta">Medical / 默认关闭 <span class="plus" aria-hidden="true"></span></span>
+        </summary>
+        <div class="more-body">
+          <div class="more-content">
+              <p class="more-warning">以下为个人医疗记录，默认折叠。内容涉及焦虑、抑郁与躁狂相关量表，可能引起不适。</p>
+              <div class="med-grid">
+                <article class="med-card">
+                  <h3>HAMA <span>焦虑</span></h3>
+                  <div class="med-rows">
+                    <div class="med-row"><span>躯体性焦虑</span><b>11</b></div>
+                    <div class="med-row"><span>精神性焦虑</span><b>21</b></div>
+                    <div class="med-row total"><span>总分</span><b>32</b></div>
+                  </div>
+                  <p class="med-result">可能为严重焦虑</p>
+                </article>
+
+                <article class="med-card">
+                  <h3>YMRS <span>躁狂</span></h3>
+                  <div class="med-rows">
+                    <div class="med-row total"><span>总分</span><b>19</b></div>
+                  </div>
+                  <p class="med-result">可能存在中度躁狂症状</p>
+                </article>
+
+                <article class="med-card">
+                  <h3>HAMD <span>抑郁</span></h3>
+                  <div class="med-rows">
+                    <div class="med-row"><span>焦虑 / 躯体化</span><b>8</b></div>
+                    <div class="med-row"><span>体重减轻</span><b>1</b></div>
+                    <div class="med-row"><span>认知障碍</span><b>11</b></div>
+                    <div class="med-row"><span>日夜变化</span><b>1</b></div>
+                    <div class="med-row"><span>阻滞</span><b>6</b></div>
+                    <div class="med-row"><span>睡眠障碍</span><b>5</b></div>
+                    <div class="med-row"><span>绝望感</span><b>6</b></div>
+                    <div class="med-row total"><span>总分</span><b>59</b></div>
+                  </div>
+                  <p class="med-result">可能为严重抑郁</p>
+                </article>
+
+                <article class="med-card">
+                  <h3>SCL-90 <span>症状自评</span></h3>
+                  <div class="med-rows">
+                    <div class="med-row"><span>躯体化</span><b>84</b></div>
+                    <div class="med-row"><span>强迫症状</span><b>84</b></div>
+                    <div class="med-row"><span>人际关系敏感</span><b>76</b></div>
+                    <div class="med-row"><span>抑郁</span><b>88</b></div>
+                    <div class="med-row"><span>焦虑</span><b>94</b></div>
+                    <div class="med-row"><span>敌对</span><b>77</b></div>
+                    <div class="med-row"><span>恐怖</span><b>86</b></div>
+                    <div class="med-row"><span>偏执</span><b>80</b></div>
+                    <div class="med-row"><span>精神病性</span><b>103</b></div>
+                  </div>
+                </article>
+              </div>
+              <p class="med-note">脑功能检查：目前该波谱接近焦虑及抑郁波谱。</p>
+              <p class="med-note">记录来源：个人医疗报告；此处不展开医疗机构信息。</p>
+            </div>
+        </div>
+      </details>
+    </div>
+  </section>
 </main>
 
 <!-- ============ 页脚 ============ -->
@@ -746,11 +943,11 @@ main{position:relative;z-index:2}
   <div class="wrap">
     <div class="foot-top">
       <p class="foot-brand">真白 冬雪<span>Mashiro Fuyuyuki</span></p>
-      <p class="foot-line"><b>Love me...</b></p>
+      <p class="foot-line"><b>Restarting...</b></p>
     </div>
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Mashiro Fuyuyuki</span>
-      <span>VRChat · BOOTH</span>
+      <span>SNOWFALL · VRChat · BOOTH</span>
       <a href="#top">Back to top ↑</a>
     </div>
   </div>
@@ -762,7 +959,7 @@ main{position:relative;z-index:2}
 
   /*
     页面交互：
-    1. 尘埃画布；2. 顶栏与进度；3. 滚动入场；4. 导航高亮；
+    1. 雪粒画布；2. 顶栏与进度；3. 滚动入场；4. 导航高亮；
     5. 状态切换（首屏肖像 / 现在 / 档案）；6. 移动菜单；7. 指针光斑；8. 年份。
   */
 
@@ -770,23 +967,23 @@ main{position:relative;z-index:2}
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(pointer: fine)').matches;
 
-  /* ---------- 1. 尘埃：缓慢漂浮的暖色 / 冷色微粒 ---------- */
+  /* ---------- 1. 雪：缓慢飘落的雪粒与少量暖尘 ---------- */
   const canvas = document.getElementById('dust');
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext('2d');
     let width = 0, height = 0, particles = [], rafId = 0, running = false;
 
     const build = () => {
-      const count = Math.min(90, Math.max(34, Math.round((width * height) / 24000)));
+      const count = Math.min(90, Math.max(36, Math.round((width * height) / 24000)));
       particles = Array.from({ length: count }, () => ({
         x: Math.random() * width,
         y: Math.random() * height,
-        r: Math.random() * 1.2 + 0.3,
+        r: Math.random() * 1.7 + 0.35,
         phase: Math.random() * Math.PI * 2,
         speed: Math.random() * 0.6 + 0.25,
-        driftX: (Math.random() - 0.5) * 0.08,
-        driftY: Math.random() * 0.12 + 0.02,
-        warm: Math.random() < 0.55
+        driftX: (Math.random() - 0.5) * 0.12,
+        driftY: Math.random() * 0.35 + 0.12,
+        tone: Math.random() < 0.15 ? 'warm' : (Math.random() < 0.72 ? 'snow' : 'blue')
       }));
     };
 
@@ -808,13 +1005,15 @@ main{position:relative;z-index:2}
         const alpha = 0.25 + 0.55 * (0.5 + 0.5 * Math.sin(t * 0.001 * p.speed + p.phase));
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = p.warm
-          ? 'rgba(230,199,154,' + alpha.toFixed(3) + ')'
-          : 'rgba(169,199,232,' + (alpha * 0.8).toFixed(3) + ')';
+        ctx.fillStyle = p.tone === 'warm'
+          ? 'rgba(230,199,154,' + (alpha * 0.6).toFixed(3) + ')'
+          : p.tone === 'blue'
+            ? 'rgba(169,199,232,' + (alpha * 0.8).toFixed(3) + ')'
+            : 'rgba(238,244,251,' + alpha.toFixed(3) + ')';
         ctx.fill();
-        p.x += p.driftX;
-        p.y -= p.driftY;
-        if (p.y < -4) { p.y = height + 4; p.x = Math.random() * width; }
+        p.x += p.driftX + Math.sin(t * 0.0006 * p.speed + p.phase) * 0.06;
+        p.y += p.driftY;
+        if (p.y > height + 4) { p.y = -4; p.x = Math.random() * width; }
         if (p.x < -4) p.x = width + 4;
         if (p.x > width + 4) p.x = -4;
       }
@@ -893,8 +1092,15 @@ main{position:relative;z-index:2}
     nemesis: { name: '青いネメシス', en: 'Blue Nemesis', state: 'Normal', img: 'avatars/nemesis.jpg', color: '#a9c7e8' },
     elusion: { name: 'エルシオン', en: 'Elusion', state: 'Nihilistic or Lonely', img: 'avatars/elusion.jpg', color: '#c3b2ee' },
     ryumii: { name: 'リュミィ', en: 'Ryumii', state: 'Random', img: 'avatars/ryumii.png', color: '#e7b3c4' },
-    melvii: { name: 'メルヴィ', en: 'Melvii', state: 'Game', img: 'avatars/melvii.jpg', color: '#e6c79a' }
+    melvii: { name: 'メルヴィ', en: 'Melvii', state: 'Game', img: 'avatars/melvii.jpg', color: '#e6c79a' },
+    kaguya: { name: '輝夜 / ピンク輝夜 / アキラ', en: 'Kaguya / Pink Kaguya / Akira', state: 'MMD', img: 'avatars/kaguya.jpg', color: '#e7b3c4' },
+    hikarun: { name: 'ひかるん / キプフェル / 黒いキプフェル', en: 'Hikarun / Kipfel / Black Kipfel', state: "You may not lucky enough to find I'm using these avatar.", shortState: 'Rare', img: 'avatars/hikarun.jpg', color: '#b7cfe6' }
   };
+  const SWAP_IMAGES = {
+    kaguya: ['avatars/kaguya.jpg', 'avatars/pink_kaguya.jpg', 'avatars/akira.jpg'],
+    hikarun: ['avatars/hikarun.jpg', 'avatars/kipfel.jpg', 'avatars/kipfel-black.jpg']
+  };
+  const swapIndex = { kaguya: 0, hikarun: 0 };
   const stateButtons = Array.from(document.querySelectorAll('.state-card'));
   const portraitImg = document.getElementById('portraitImg');
   const portraitName = document.getElementById('portraitName');
@@ -907,12 +1113,13 @@ main{position:relative;z-index:2}
   const selectState = (key) => {
     const data = STATES[key];
     if (!data) return;
+    const label = data.shortState || data.state;
     root.style.setProperty('--state', data.color);
     nowState.textContent = data.name;
-    nowStateDesc.textContent = data.state;
+    nowStateDesc.textContent = label;
     portraitName.textContent = data.name;
-    portraitState.textContent = data.state;
-    fileNow.textContent = data.name + ' · ' + data.state;
+    portraitState.textContent = label;
+    fileNow.textContent = data.name + ' · ' + label;
     stateButtons.forEach((btn) => {
       btn.setAttribute('aria-pressed', btn.dataset.state === key ? 'true' : 'false');
     });
@@ -932,6 +1139,34 @@ main{position:relative;z-index:2}
 
   stateButtons.forEach((btn) => {
     btn.addEventListener('click', () => selectState(btn.dataset.state));
+  });
+
+  /* 同一状态对应多个 Avatar 时，用卡片下方的按钮循环切换主图 */
+  const swapButtons = Array.from(document.querySelectorAll('.state-swap'));
+  swapButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const wrap = btn.closest('.state-card-wrap');
+      if (!wrap) return;
+      const card = wrap.querySelector('.state-card');
+      const main = card ? card.querySelector('.state-media > img') : null;
+      const alt = btn.querySelector('img');
+      const count = btn.querySelector('.swap-count');
+      if (!card || !main || !alt) return;
+      const key = card.dataset.state;
+      const images = SWAP_IMAGES[key];
+      if (!images) return;
+      swapIndex[key] = (swapIndex[key] + 1) % images.length;
+      const index = swapIndex[key];
+      const nextIndex = (index + 1) % images.length;
+      main.setAttribute('src', images[index]);
+      alt.setAttribute('src', images[nextIndex]);
+      if (count) count.textContent = (index + 1) + ' / ' + images.length;
+      if (STATES[key]) STATES[key].img = images[index];
+      if (STATES[key]) {
+        btn.setAttribute('aria-label', '切换 ' + STATES[key].name + ' 的图片，第 ' + (index + 1) + ' / ' + images.length + ' 张');
+      }
+      if (card.getAttribute('aria-pressed') === 'true') selectState(key);
+    });
   });
 
   /* ---------- 6. 移动菜单 ---------- */
